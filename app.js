@@ -3,7 +3,7 @@ const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-
+let port = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.static('public')); 
@@ -14,9 +14,11 @@ app.use(bodyParser.json());
 mongoose.connect('mongodb+srv://Petrus:Peru1234@petrusdatabase.0tgzc.mongodb.net/PetrusDatabase?retryWrites=true&w=majority',{ useNewUrlParser: true, useUnifiedTopology: true }, () => console.log('connected'));
 
 
+app.get("/", (req,res) => {
+    res.send("hello world");
+});
 
 
-//app.use('/posts', postsRoute);
 
 var fileModel = require('./model'); 
 
@@ -73,4 +75,4 @@ app.post('/upload',/* upload.single('file'),*/ (req, res) => {
 
 
 
-app.listen(3000);
+app.listen(port);
