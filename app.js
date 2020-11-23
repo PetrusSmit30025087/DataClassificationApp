@@ -1,12 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
+const bodyparser = require('body-parser');
 const app = express();
 
-//middlewares 
-app.use('/posts', () => {
-    console.log('This is running');
-});
+const postsRoute = require('./routes/posts');
+
+app.use('/posts', postsRoute);
+
+
+
 //Routes
 app.get('/',(req,res) => {
     res.send('test');
